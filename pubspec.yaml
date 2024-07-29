@@ -34,6 +34,8 @@ dependencies:
   flutter_bloc: ^8.1.6
   dio: ^5.5.0+1
   flutter_screenutil: ^5.9.3
+  google_fonts: ^6.2.1
+
 
 
 
