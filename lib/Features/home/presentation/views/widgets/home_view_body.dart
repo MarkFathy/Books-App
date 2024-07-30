@@ -1,8 +1,7 @@
-import 'package:books/core/utils/assets.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/utils/styles.dart';
+import 'best_seller_listview_items.dart';
 import 'custom_app_bar.dart';
 import 'featured_books_list.dart';
 
@@ -11,58 +10,42 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Padding(
-      padding: EdgeInsets.symmetric(horizontal: 15.w),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-            const CustomAppBar(),
-            const FeaturedBooksListView(),
-          SizedBox(
-            height: 50.h,
-          ),
-          Text(
-            'Best Seller',
-            style:Styles.titleMedium,
-          ),
-          const BestSellerListViewItem(),
-
-
-
-        ],
-      ),
-    );
-  }
-}
-
-class BestSellerListViewItem extends StatelessWidget {
-  const BestSellerListViewItem({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 120.h,
-      child: Row(
-        children: [
-        AspectRatio(
-        aspectRatio: 2.5/4,
-        child: Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16.r),
-              image:const DecorationImage(image:AssetImage(AssetsData.book1))
+    return CustomScrollView(
+      slivers: [
+        SliverToBoxAdapter(
+          child:Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const CustomAppBar(),
+              const FeaturedBooksListView(),
+              SizedBox(
+                height: 50.h,
+              ),
+              Padding(
+                padding:  EdgeInsets.symmetric(horizontal: 20.w),
+                child: Text(
+                  'Best Seller',
+                  style:Styles.textStyle18,
+                ),
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+            ],
           ),
         ),
-      ),
-         const Column(
-            children: [
-
-            ],
-          )
-        ],
-      ),
+        SliverToBoxAdapter(
+           child:Padding(
+             padding: EdgeInsets.symmetric(horizontal: 20.w),
+             child: const BestSellerListViewItems(),
+           ),
+        ),
+      ],
     );
   }
 }
+
+
 
 
 
