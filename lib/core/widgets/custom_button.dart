@@ -4,7 +4,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../utils/styles.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key});
+  const CustomButton({
+    super.key,
+    required this.backGroundColor,
+    required this.textColor,
+    this.borderRadius,
+    required this.text
+  });
+  final Color backGroundColor;
+  final Color textColor;
+  final String text;
+  final BorderRadius? borderRadius;
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -13,15 +25,15 @@ class CustomButton extends StatelessWidget {
       child: TextButton(
           onPressed: (){},
         style: TextButton.styleFrom(
-          backgroundColor: Colors.white,
+          backgroundColor:backGroundColor,
           shape:  RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16.r)
+            borderRadius: borderRadius ?? BorderRadius.circular(16)
           ),
 
         ),
-          child:  Text('19.99E',
+          child:  Text(text,
             style: Styles.textStyle16.copyWith(
-                color: Colors.black,
+                color: textColor,
                 fontWeight: FontWeight.w900
             ),),
       ),
