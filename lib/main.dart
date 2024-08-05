@@ -1,4 +1,3 @@
-import 'package:books/Features/home/data/repos/home_repo.dart';
 import 'package:books/Features/home/presentation/manager/featured_books_cubit/featured_books_cubit.dart';
 import 'package:books/Features/home/presentation/manager/newest_books_cubit/newest_cubit.dart';
 import 'package:books/constants.dart';
