@@ -1,95 +1,60 @@
 import 'package:equatable/equatable.dart';
 
-import 'VolumeInfo.dart';
-import 'SaleInfo.dart';
 import 'AccessInfo.dart';
+import 'ReadingModes.dart';
+import 'SaleInfo.dart';
 import 'SearchInfo.dart';
+import 'VolumeInfo.dart';
 
+class BookModel extends Equatable {
+  final String? kind;
+  final String? id;
+  final String? etag;
+  final String? selfLink;
+  final VolumeInfo volumeInfo;
+  final SaleInfo? saleInfo;
+  final AccessInfo? accessInfo;
+  final SearchInfo? searchInfo;
 
-class BookModel extends Equatable{
-  BookModel({
-      String? kind, 
-      String? id, 
-      String? etag, 
-      String? selfLink, 
-      VolumeInfo? volumeInfo, 
-      SaleInfo? saleInfo, 
-      AccessInfo? accessInfo, 
-      SearchInfo? searchInfo,}){
-    _kind = kind;
-    _id = id;
-    _etag = etag;
-    _selfLink = selfLink;
-    _volumeInfo = volumeInfo;
-    _saleInfo = saleInfo;
-    _accessInfo = accessInfo;
-    _searchInfo = searchInfo;
-}
+  const BookModel({
+    this.kind,
+    this.id,
+    this.etag,
+    this.selfLink,
+    required this.volumeInfo,
+    this.saleInfo,
+    this.accessInfo,
+    this.searchInfo,
+  });
 
-  BookModel.fromJson(dynamic json) {
-    _kind = json['kind'];
-    _id = json['id'];
-    _etag = json['etag'];
-    _selfLink = json['selfLink'];
-    _volumeInfo = json['volumeInfo'] != null ? VolumeInfo.fromJson(json['volumeInfo']) : null;
-    _saleInfo = json['saleInfo'] != null ? SaleInfo.fromJson(json['saleInfo']) : null;
-    _accessInfo = json['accessInfo'] != null ? AccessInfo.fromJson(json['accessInfo']) : null;
-    _searchInfo = json['searchInfo'] != null ? SearchInfo.fromJson(json['searchInfo']) : null;
-  }
-  String? _kind;
-  String? _id;
-  String? _etag;
-  String? _selfLink;
-  VolumeInfo? _volumeInfo;
-  SaleInfo? _saleInfo;
-  AccessInfo? _accessInfo;
-  SearchInfo? _searchInfo;
-BookModel copyWith({  String? kind,
-  String? id,
-  String? etag,
-  String? selfLink,
-  VolumeInfo? volumeInfo,
-  SaleInfo? saleInfo,
-  AccessInfo? accessInfo,
-  SearchInfo? searchInfo,
-}) => BookModel(  kind: kind ?? _kind,
-  id: id ?? _id,
-  etag: etag ?? _etag,
-  selfLink: selfLink ?? _selfLink,
-  volumeInfo: volumeInfo ?? _volumeInfo,
-  saleInfo: saleInfo ?? _saleInfo,
-  accessInfo: accessInfo ?? _accessInfo,
-  searchInfo: searchInfo ?? _searchInfo,
-);
-  String? get kind => _kind;
-  String? get id => _id;
-  String? get etag => _etag;
-  String? get selfLink => _selfLink;
-  VolumeInfo? get volumeInfo => _volumeInfo;
-  SaleInfo? get saleInfo => _saleInfo;
-  AccessInfo? get accessInfo => _accessInfo;
-  SearchInfo? get searchInfo => _searchInfo;
+  factory BookModel.fromJson(Map<String, dynamic> json) => BookModel(
+    kind: json['kind'] as String?,
+    id: json['id'] as String?,
+    etag: json['etag'] as String?,
+    selfLink: json['selfLink'] as String?,
+    volumeInfo:
+    VolumeInfo.fromJson(json['volumeInfo'] as Map<String, dynamic>),
+    saleInfo: json['saleInfo'] == null
+        ? null
+        : SaleInfo.fromJson(json['saleInfo'] as Map<String, dynamic>),
+    accessInfo: json['accessInfo'] == null
+        ? null
+        : AccessInfo.fromJson(json['accessInfo'] as Map<String, dynamic>),
+    searchInfo: json['searchInfo'] == null
+        ? null
+        : SearchInfo.fromJson(json['searchInfo'] as Map<String, dynamic>),
+  );
 
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['kind'] = _kind;
-    map['id'] = _id;
-    map['etag'] = _etag;
-    map['selfLink'] = _selfLink;
-    if (_volumeInfo != null) {
-      map['volumeInfo'] = _volumeInfo?.toJson();
-    }
-    if (_saleInfo != null) {
-      map['saleInfo'] = _saleInfo?.toJson();
-    }
-    if (_accessInfo != null) {
-      map['accessInfo'] = _accessInfo?.toJson();
-    }
-    if (_searchInfo != null) {
-      map['searchInfo'] = _searchInfo?.toJson();
-    }
-    return map;
-  }
+  Map<String, dynamic> toJson() => {
+    'kind': kind,
+    'id': id,
+    'etag': etag,
+    'selfLink': selfLink,
+    'volumeInfo': volumeInfo?.toJson(),
+    'saleInfo': saleInfo?.toJson(),
+    'accessInfo': accessInfo?.toJson(),
+    'searchInfo': searchInfo?.toJson(),
+  };
 
   @override
   List<Object?> get props {
@@ -102,7 +67,6 @@ BookModel copyWith({  String? kind,
       saleInfo,
       accessInfo,
       searchInfo,
-
     ];
   }
 }

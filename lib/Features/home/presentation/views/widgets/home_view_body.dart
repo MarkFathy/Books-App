@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/utils/styles.dart';
-import 'best_seller_listview_items.dart';
+import 'newest_listview_items.dart';
 import 'custom_app_bar.dart';
 import 'featured_books_list.dart';
 
@@ -13,7 +13,7 @@ class HomeViewBody extends StatelessWidget {
     return CustomScrollView(
       slivers: [
         SliverToBoxAdapter(
-          child:Column(
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const CustomAppBar(),
@@ -22,10 +22,10 @@ class HomeViewBody extends StatelessWidget {
                 height: 50.h,
               ),
               Padding(
-                padding:  EdgeInsets.symmetric(horizontal: 20.w),
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: Text(
-                  'Best Seller',
-                  style:Styles.textStyle18,
+                  'Newest Books',
+                  style: Styles.textStyle18,
                 ),
               ),
               SizedBox(
@@ -35,19 +35,12 @@ class HomeViewBody extends StatelessWidget {
           ),
         ),
         SliverToBoxAdapter(
-           child:Padding(
-             padding: EdgeInsets.symmetric(horizontal: 20.w),
-             child: const BestSellerListViewItems(),
-           ),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.w),
+            child: const NewestBooksListViewItems(),
+          ),
         ),
       ],
     );
   }
 }
-
-
-
-
-
-
-

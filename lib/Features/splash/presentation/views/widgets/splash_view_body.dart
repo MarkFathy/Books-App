@@ -14,7 +14,8 @@ class SplashViewBody extends StatefulWidget {
   State<SplashViewBody> createState() => _SplashViewBodyState();
 }
 
-class _SplashViewBodyState extends State<SplashViewBody> with SingleTickerProviderStateMixin {
+class _SplashViewBodyState extends State<SplashViewBody>
+    with SingleTickerProviderStateMixin {
   late AnimationController animationController;
   late Animation<Offset> slidingAnimation;
 
@@ -24,25 +25,29 @@ class _SplashViewBodyState extends State<SplashViewBody> with SingleTickerProvid
     initSlidingAnimation();
     navigateToHome();
   }
-  void navigateToHome(){
-    Future.delayed(const Duration(seconds: 2),(){
+
+  void navigateToHome() {
+    Future.delayed(const Duration(seconds: 2), () {
       //Get.off(()=>const HomeView(),transition: Transition.zoom);
       GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
-
     });
   }
 
-  void initSlidingAnimation(){
-    animationController=AnimationController(vsync: this,duration:const Duration(seconds: 2));
-    slidingAnimation=Tween<Offset>(begin:const Offset(0,5) ,end:Offset.zero ).animate(animationController);
+  void initSlidingAnimation() {
+    animationController =
+        AnimationController(vsync: this, duration: const Duration(seconds: 2));
+    slidingAnimation =
+        Tween<Offset>(begin: const Offset(0, 5), end: Offset.zero)
+            .animate(animationController);
     animationController.forward();
   }
 
   @override
   void dispose() {
-    super.dispose();
     animationController.dispose();
+    super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -51,11 +56,7 @@ class _SplashViewBodyState extends State<SplashViewBody> with SingleTickerProvid
       children: [
         Image.asset(AssetsData.logo),
         SlidingText(slidingAnimation: slidingAnimation),
-
       ],
     );
   }
-
-
-
 }

@@ -1,24 +1,18 @@
-/// textSnippet : "This book compares constructs from C with constructs from Ada in terms of levels of abstractions."
+import 'package:equatable/equatable.dart';
 
-class SearchInfo {
-  SearchInfo({
-      String? textSnippet,}){
-    _textSnippet = textSnippet;
-}
+class SearchInfo extends Equatable {
+  final String? textSnippet;
 
-  SearchInfo.fromJson(dynamic json) {
-    _textSnippet = json['textSnippet'];
-  }
-  String? _textSnippet;
-SearchInfo copyWith({  String? textSnippet,
-}) => SearchInfo(  textSnippet: textSnippet ?? _textSnippet,
-);
-  String? get textSnippet => _textSnippet;
+  const SearchInfo({this.textSnippet});
 
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['textSnippet'] = _textSnippet;
-    return map;
-  }
+  factory SearchInfo.fromJson(Map<String, dynamic> json) => SearchInfo(
+    textSnippet: json['textSnippet'] as String?,
+  );
 
+  Map<String, dynamic> toJson() => {
+    'textSnippet': textSnippet,
+  };
+
+  @override
+  List<Object?> get props => [textSnippet];
 }

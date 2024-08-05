@@ -1,33 +1,23 @@
-/// type : "OTHER"
-/// identifier : "UOM:39015037286278"
+import 'package:equatable/equatable.dart';
 
-class IndustryIdentifiers {
-  IndustryIdentifiers({
-      String? type, 
-      String? identifier,}){
-    _type = type;
-    _identifier = identifier;
-}
+class IndustryIdentifier extends Equatable {
+  final String? type;
+  final String? identifier;
 
-  IndustryIdentifiers.fromJson(dynamic json) {
-    _type = json['type'];
-    _identifier = json['identifier'];
-  }
-  String? _type;
-  String? _identifier;
-IndustryIdentifiers copyWith({  String? type,
-  String? identifier,
-}) => IndustryIdentifiers(  type: type ?? _type,
-  identifier: identifier ?? _identifier,
-);
-  String? get type => _type;
-  String? get identifier => _identifier;
+  const IndustryIdentifier({this.type, this.identifier});
 
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['type'] = _type;
-    map['identifier'] = _identifier;
-    return map;
+  factory IndustryIdentifier.fromJson(Map<String, dynamic> json) {
+    return IndustryIdentifier(
+      type: json['type'] as String?,
+      identifier: json['identifier'] as String?,
+    );
   }
 
+  Map<String, dynamic> toJson() => {
+    'type': type,
+    'identifier': identifier,
+  };
+
+  @override
+  List<Object?> get props => [type, identifier];
 }

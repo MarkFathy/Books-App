@@ -11,14 +11,13 @@ class SearchResultListView extends StatelessWidget {
     return ListView.builder(
       shrinkWrap: true,
       padding: EdgeInsets.zero,
-      physics:const BouncingScrollPhysics(),
-      itemBuilder: (context,index)=>Padding(
-        padding:  EdgeInsets.symmetric(vertical: 10.h),
-        child: const BookListViewItem(),
+      physics: const BouncingScrollPhysics(),
+      itemBuilder: (context, index) => Padding(
+        padding: EdgeInsets.symmetric(vertical: 10.h),
+        child: Text('dd'),
+        //child: const BookListViewItem(bookModel: '',),
       ),
       itemCount: 10,
-
-
     );
   }
 }

@@ -9,24 +9,18 @@ class CustomSearchTextField extends StatelessWidget {
       decoration: InputDecoration(
         fillColor: Colors.white,
         enabledBorder: OutlineInputBorder(
-          borderSide:const BorderSide(
-              color: Colors.white
-          ),
+          borderSide: const BorderSide(color: Colors.white),
           borderRadius: BorderRadius.circular(12),
-
         ),
-        focusedBorder:OutlineInputBorder(
-          borderSide:const BorderSide(
-              color: Colors.white
-          ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.white),
           borderRadius: BorderRadius.circular(12),
-
-        ) ,
+        ),
         hintText: 'Search',
-        suffixIcon: IconButton(onPressed: (){}, icon:const Opacity(opacity: 0.8,child:Icon(Icons.search)),
-
+        suffixIcon: IconButton(
+          onPressed: () {},
+          icon: const Opacity(opacity: 0.8, child: Icon(Icons.search)),
         ),
-
       ),
     );
   }
