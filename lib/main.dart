@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'Features/home/data/repos/home_repo_implementation.dart';
 
 void main() {
@@ -33,7 +32,7 @@ class MyApp extends StatelessWidget {
             BlocProvider(
                 create: (context) =>
                     NewestCubit(getIt.get<HomeRepoImplementation>())
-                      ..getNewestBooks())
+                      ..getNewestBooks()),
           ],
           child: MaterialApp.router(
             routerConfig: AppRouter.router,
