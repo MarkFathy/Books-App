@@ -1,34 +1,48 @@
-import 'package:books/Features/search/presentation/views/widgets/search_results_list.dart';
+import 'package:books/Features/home/presentation/views/widgets/book_list_view_item.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../core/utils/styles.dart';
-import '../../../../home/presentation/views/widgets/book_list_view_item.dart';
-import 'custom_search_field.dart';
+import '../../cubit/search_cubit.dart';
+import '../../cubit/search_state.dart';
 
 class SearchViewBody extends StatelessWidget {
   const SearchViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const CustomSearchTextField(),
-          const SizedBox(
-            height: 15,
+    return Scaffold(
+      appBar: AppBar(
+        title: TextField(
+          decoration: const InputDecoration(
+            hintText: 'Search books...',
           ),
-          Text(
-            'Search Result',
-            style: Styles.textStyle18,
-          ),
-          const SizedBox(
-            height: 15,
-          ),
-          const Expanded(child: SearchResultListView()),
-        ],
+          onSubmitted: (query) {
+            context.read<SearchBooksCubit>().searchBooks(query);
+          },
+          onChanged: (query) {
+            context.read<SearchBooksCubit>().searchBooks(query);
+          },
+        ),
+      ),
+      body: BlocBuilder<SearchBooksCubit, SearchBooksState>(
+        builder: (context, state) {
+          if (state is SearchBooksLoading) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (state is SearchBooksSuccess) {
+            return ListView.builder(
+              itemCount: state.books.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: BookListViewItem(bookModel: state.books[index]),
+                );
+              },
+            );
+          } else if (state is SearchBooksError) {
+            return Center(child: Text(state.message));
+          }
+          return const Center(child: Text('Search for books'));
+        },
       ),
     );
   }
