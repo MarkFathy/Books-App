@@ -1,4 +1,5 @@
 import 'package:books/Features/home/presentation/views/widgets/book_list_view_item.dart';
+import 'package:books/core/widgets/custom_loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -27,7 +28,7 @@ class SearchViewBody extends StatelessWidget {
       body: BlocBuilder<SearchBooksCubit, SearchBooksState>(
         builder: (context, state) {
           if (state is SearchBooksLoading) {
-            return const Center(child: CircularProgressIndicator());
+            return const Center(child: CustomLoadingIndicator());
           } else if (state is SearchBooksSuccess) {
             return ListView.builder(
               itemCount: state.books.length,
