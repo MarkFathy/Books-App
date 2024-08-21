@@ -2,15 +2,8 @@
 
 A new Flutter project.
 
+"Bookly"
+
 ## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+"Bookly" is a Flutter-based application tailored for book lovers. The app allows users to search for and read a wide variety of books, offering a seamless and enjoyable reading experience. The architecture follows the MVVM pattern, with Cubit used for state management and Dartz for robust error handling. Whether you're searching for the latest bestsellers or exploring new genres, Bookly makes it easy to discover and enjoy books right within the app.
